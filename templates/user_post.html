@@ -2,15 +2,15 @@
 
 {% block content %}
    
-    <h1 style="text-align:center;">Your Blogs are Here</h1>
+    <h1 style="text-align:center;">User Posts</h1>
     {% if blogs|length == 0%}
-        <p> No blogs yet! </p>
+      <p> User hasn't created any blogs yet! </p>
     {%else%}
-        {% for blog in blogs %}
+      {% for blog in blogs %}
         <h2> <a href="./blog?id={{blog.id}}">{{blog.name}}</a> </h2>
         <p>{{blog.entry}} </p>
         <p>written by <a href="./blog?user={{blog.owner.username}}">{{blog.owner.username}}</a> </p>
-        {%endfor%}
+      {%endfor%}
     {%endif%}
 
 {%endblock%}

@@ -4,13 +4,18 @@
 		<title> {{title}} </title>
 		<style>
 			.error{ color: red;}
+			a{text-decoration: none;
+			font-family: Arial;}
 		</style>
 	</head>
 
 	<body>
 		<nav>
-			<a href = "/blog" >Main Blog Page</a> |
-			<a href = "/newpost" > Add a Blog Entry</a>
+			<a href = "/" > Home</a> |
+			<a href = "/blog" > All Posts</a> |
+			<a href = "/newpost" > New Post</a> |
+			<a href = "/login" > Log In</a> |
+			<a href = "/blog" > Log Out</a>
 		</nav>
 
 		{% block content %}

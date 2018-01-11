@@ -7,9 +7,9 @@
         <p> No blogs yet! </p>
     {%else%}
         {% for blog in blogs %}
-        <h2> <a href="./blog?id={{blog.id}}">{{blog.name}}</a> </h2>
+        <h2 style="text-decoration:underline;"> <a href="./blog?id={{blog.id}}" style="color:rgb(100, 137, 100);">{{blog.name}}</a> </h2>
         <p>{{blog.entry}} </p>
-        <p>written by <a href="./blog?user={{blog.owner.username}}">{{blog.owner.username}}</a> </p>
+        <p style="font-size:10pt;">Written by: <a href="./blog?user={{blog.owner.username}}">{{blog.owner.username}}</a> </p>
         {%endfor%}
     {%endif%}
 

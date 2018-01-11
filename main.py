@@ -91,7 +91,7 @@ def login():
             return render_template("log_in.html", error = "Oops! Username not valid.")    
 
         else:
-            return render_template("log_in.html", error = "Oops! Try again!")      
+            return render_template("log_in.html", error = "Oops! Try again!")
 
     return render_template("log_in.html")       
 
@@ -99,7 +99,7 @@ def login():
 # Deletes current session and redirects to the list of all blogs. 
 @app.route("/logout")
 def logout():
-    if 'username' in session:
+    if session['username']:
         del session['username']
     return redirect('/blog')
     
@@ -114,7 +114,7 @@ def sign_up():
 
         existing_user = User.query.filter_by(username=username).first()
         
-        if password and not existing_user and password == verify:
+        if password and not existing_user and password == verify and len(password)>2 and len(username)>3:
             new_user = User(username, password)
             db.session.add(new_user)
             db.session.commit()
@@ -123,9 +123,15 @@ def sign_up():
         
         elif existing_user:
             return render_template("signup.html", error = "Name already in use. Please choose a different username.")
+
+        elif len(username) < 3:
+            return render_template("signup.html", error = "Username must be at least 3 characters.")
         
         elif not password:
             return render_template("signup.html",user_name = username, error = "Please enter a password.")
+
+        elif len(password) < 3:
+            return render_template("signup.html", error = "Password must be at least 3 characters.")
 
         else:
             return render_template("signup.html", user_name = username, error = "Passwords don't match.")
@@ -146,7 +152,7 @@ def blog():
     elif is_blog_user:
         the_user = User.query.filter_by( username = is_blog_user).first()
         user_blogs = Blog.query.filter_by( owner = the_user).all()
-        return render_template("user_post.html", blogs = user_blogs, title = "YourBlogs")    
+        return render_template("user_post.html", blogs = user_blogs, username= is_blog_user, title = "YourBlogs")    
 
     else:
         blogs = Blog.query.all()

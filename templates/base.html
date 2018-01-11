@@ -3,22 +3,27 @@
 	<head>
 		<title> {{title}} </title>
 		<style>
-			.error{ color: red;}
-			a{text-decoration: none;
-			font-family: Arial;}
+			*{text-align: center; font-family: Arial, Helvetica, sans-serif; background-color: rgb(190, 203, 214);}	
+			.error {color: red;}
+			a {text-decoration: none; color: rgb(27, 97, 147);}
+			.subscript {font-size: 8pt;}
+			div {margin-right: 20%; margin-left: 20%; margin-bottom:10px }
 		</style>
 	</head>
 
 	<body>
-		<nav>
+		<nav style="text-align:left; float:left; margin-right: 5%; margin-left: 5%; margin-top:10px;">
 			<a href = "/" > Home</a> |
 			<a href = "/blog" > All Posts</a> |
-			<a href = "/newpost" > New Post</a> |
-			<a href = "/login" > Log In</a> |
-			<a href = "/blog" > Log Out</a>
+			<a href = "/newpost" > New Post</a>
 		</nav>
-
-		{% block content %}
-		{% endblock %}
+		<nav style="text-align:right; float:right; margin-right: 5%; margin-left: 5%; margin-top:10px;">
+			<a href = "/login" > Log In</a> |
+			<a href = "/logout" > Log Out</a>
+		</nav>
+		<div>
+			{% block content %}
+			{% endblock %}
+		</div>
 	</body>
 </html>
